@@ -1,0 +1,16 @@
+{
+	"name": "Payment Api",
+	"version": "1.0.0",
+	"description": "Payment Api Documentation",
+	"title": "Payment Api Documentation",
+	"url": "https://www.web23.io/payment-api/<version>",
+	"header": {
+		"title": "GETTING STARTED",
+		"filename": "apidoc-getting-started.md"
+	},
+	"template": {
+		"withCompare": false,
+		"withGenerator": false
+	},
+	"sampleUrl": null
+}

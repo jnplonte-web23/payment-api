@@ -1,0 +1,20 @@
+{
+	"local": {
+		"host": "http://localhost",
+		"port": 8383,
+		"endpoints": {},
+		"keys": {}
+	},
+	"development": {
+		"host": "https://www.web23.io/payment-api",
+		"port": 0,
+		"endpoints": {},
+		"keys": {}
+	},
+	"production": {
+		"host": "https://www.web23.io/payment-api",
+		"port": 0,
+		"endpoints": {},
+		"keys": {}
+	}
+}
