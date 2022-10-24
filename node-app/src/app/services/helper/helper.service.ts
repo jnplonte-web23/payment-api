@@ -18,6 +18,33 @@ export class Helper {
 
 	constructor(private config) {}
 
+	get passwordExpiry(): Date {
+		const dateExpiry = new Date();
+		dateExpiry.setDate(dateExpiry.getDate() + this.config.passwordExpiryLength || 30);
+
+		return dateExpiry;
+	}
+
+	get secretKey(): string {
+		return this.config.secretKey || '';
+	}
+
+	get secretHash(): string {
+		return this.config.secretKeyHash || '';
+	}
+
+	get stripeSuccessUrl(): string {
+		return this.config['api'][this.env]['endpoints']['stripeSuccessUrl'] || '';
+	}
+
+	get stripeFailedUrl(): string {
+		return this.config['api'][this.env]['endpoints']['stripeFailedUrl'] || '';
+	}
+
+	get stripeKey(): string {
+		return this.config['api'][this.env]['keys']['stripe'] || '';
+	}
+
 	toJson(jsonData: any = ''): any {
 		return toJson(jsonData);
 	}
@@ -56,21 +83,6 @@ export class Helper {
 
 	generateRandomString(num: number = 10): string {
 		return generateRandomString(num);
-	}
-
-	get passwordExpiry(): Date {
-		const dateExpiry = new Date();
-		dateExpiry.setDate(dateExpiry.getDate() + this.config.passwordExpiryLength || 30);
-
-		return dateExpiry;
-	}
-
-	get secretKey(): string {
-		return this.config.secretKey || '';
-	}
-
-	get secretHash(): string {
-		return this.config.secretKeyHash || '';
 	}
 
 	hashEncode(data): any {

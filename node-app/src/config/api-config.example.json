@@ -3,8 +3,8 @@
 		"host": "http://localhost",
 		"port": 8383,
 		"endpoints": {
-			"stripe_success_url": "",
-			"stripe_failed_url": ""
+			"stripeSuccessUrl": "",
+			"stripeFailedUrl": ""
 		},
 		"keys": {
 			"stripe": ""
@@ -14,8 +14,8 @@
 		"host": "",
 		"port": 0,
 		"endpoints": {
-			"stripe_success_url": "",
-			"stripe_failed_url": ""
+			"stripeSuccessUrl": "",
+			"stripeFailedUrl": ""
 		},
 		"keys": {
 			"stripe": ""
@@ -25,8 +25,8 @@
 		"host": "",
 		"port": 0,
 		"endpoints": {
-			"stripe_success_url": "",
-			"stripe_failed_url": ""
+			"stripeSuccessUrl": "",
+			"stripeFailedUrl": ""
 		},
 		"keys": {
 			"stripe": ""
