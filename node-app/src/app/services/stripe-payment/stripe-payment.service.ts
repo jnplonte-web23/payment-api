@@ -5,15 +5,24 @@ export class StripePayment {
 	stripe: Stripe;
 
 	constructor(private config) {
-		this.stripe = new Stripe(config['api'][this.env]['keys']['stripe'], {
+		this.stripe = new Stripe(this.config['api'][this.env]['keys']['stripe'], {
 			apiVersion: '2022-08-01',
 		});
 	}
 
-	createPayment(data: any, currency: string = 'usd') {
+	createPayment(
+		data: any,
+		orderId: string = '',
+		currency: string = 'usd',
+		email: string,
+		successUrl: string,
+		failedUrl: string
+	) {
 		return this.stripe.checkout.sessions.create({
 			payment_method_types: ['card'],
 			mode: 'payment',
+			customer_email: email,
+			client_reference_id: orderId,
 			line_items: data.map((dData) => {
 				return {
 					price_data: {
@@ -26,8 +35,8 @@ export class StripePayment {
 					quantity: Number(dData.quantity),
 				};
 			}),
-			success_url: this.config['api'][this.env]['endpoints']['stripeSuccessUrl'],
-			cancel_url: this.config['api'][this.env]['endpoints']['stripeFailedUrl'],
+			success_url: `${successUrl}?oId=${orderId}&oEm=${email}`,
+			cancel_url: `${failedUrl}?oId=${orderId}&oEm=${email}`,
 		});
 	}
 }
