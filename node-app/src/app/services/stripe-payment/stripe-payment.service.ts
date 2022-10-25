@@ -12,7 +12,7 @@ export class StripePayment {
 
 	createPayment(
 		data: any,
-		orderId: string = '',
+		referenceId: string = '',
 		currency: string = 'usd',
 		email: string,
 		successUrl: string,
@@ -22,21 +22,19 @@ export class StripePayment {
 			payment_method_types: ['card'],
 			mode: 'payment',
 			customer_email: email,
-			client_reference_id: orderId,
-			line_items: data.map((dData) => {
-				return {
-					price_data: {
-						currency: currency,
-						product_data: {
-							name: dData.name,
-						},
-						unit_amount: dData.price,
+			client_reference_id: referenceId,
+			line_items: data.map((dData) => ({
+				price_data: {
+					currency: currency,
+					product_data: {
+						name: dData.name,
 					},
-					quantity: Number(dData.quantity),
-				};
-			}),
-			success_url: `${successUrl}?oId=${orderId}&oEm=${email}`,
-			cancel_url: `${failedUrl}?oId=${orderId}&oEm=${email}`,
+					unit_amount: dData.price,
+				},
+				quantity: Number(dData.quantity),
+			})),
+			success_url: `${successUrl}&session_id={CHECKOUT_SESSION_ID}`,
+			cancel_url: failedUrl,
 		});
 	}
 }
